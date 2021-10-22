@@ -1,0 +1,20 @@
+{
+    "name": "io.github.wzhijiang.android.webview",
+    "version": "1.0.0",
+    "displayName": "io.github.wzhijiang.android.webview",
+    "description": "Display android webview contents with android surface.",
+    "unity": "2019.4",
+    "unityRelease": "28f1",
+    "dependencies": {
+    },
+    "keywords": [
+        "android", "webview"
+    ],
+    "author": {
+        "name": "Zhijiang Wang",
+        "email": "zhijiang.w@outlook.com"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    }
+}

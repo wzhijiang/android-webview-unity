@@ -6,10 +6,6 @@ using UnityEngine;
 
 namespace Igw.Samples
 {
-#if UNITY_EDITOR
-    using ExternalTexture = MockExternalTexture;
-#endif
-
     public class GHWebViewSample : MonoBehaviour
     {
         // See https://developers.whatismybrowser.com/useragents/explore/hardware_type_specific/tablet/
@@ -36,14 +32,17 @@ namespace Igw.Samples
 
         IEnumerator Start()
         {
-            m_Handler = new Handler(Activity.GetMainLooper());
+            m_Handler = new Handler(Looper.GetMainLooper());
             m_TouchDetector.onTouch += OnTouch;
+
+            m_ExternalTexture = new ExternalTexture(null, 1920, 1080);
+            yield return m_ExternalTexture.WaitForInitialized();
 
             InitSurface(1920, 1080);
 
             yield return m_Handler.PostAsync(() =>
             {
-                m_WebView = new GHWebView(Activity.CurrentActivity, Activity.UnityPlayer.JavaObject, 1920, 1080);
+                m_WebView = new GHWebView(UnityPlayerActivity.CurrentActivity, UnityPlayerActivity.UnityPlayer.JavaObject, 1920, 1080);
                 m_WebView.SetSurface(m_Surface.JavaObject);
 
                 m_WebView.GetSettings().SetUserAgentString(USER_AGENT_TABLET);
@@ -59,7 +58,6 @@ namespace Igw.Samples
 
         void InitSurface(int width, int height)
         {
-            m_ExternalTexture = new ExternalTexture(null, width, height);
             m_Surface = new Surface(m_ExternalTexture.GetSurfaceTexture());
 
             int textureId = m_ExternalTexture.GetTextureId();

@@ -6,6 +6,7 @@
     "unity": "2019.4",
     "unityRelease": "28f1",
     "dependencies": {
+        "io.github.wzhijiang.android.surface": "https://github.com/wzhijiang/android-surface-unity.git#v1.0.4"
     },
     "keywords": [
         "android", "webview"

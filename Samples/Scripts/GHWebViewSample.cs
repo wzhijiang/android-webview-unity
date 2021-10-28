@@ -47,7 +47,7 @@ namespace Igw.Samples
 
                 m_WebView.GetSettings().SetUserAgentString(USER_AGENT_TABLET);
 
-                m_WebView.LoadUrl("https://www.bilibili.com");
+                m_WebView.LoadUrl("https://www.youtube.com");
             });
         }
 
